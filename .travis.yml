@@ -1,0 +1,16 @@
+language: rust
+sudo: flase
+rust:
+  - nightly
+
+cache: cargo
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+
+script:
+  - cp .env.travis .env
+- cargo test --verbose

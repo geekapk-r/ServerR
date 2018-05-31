@@ -1,5 +1,5 @@
-use std::time::SystemTime;
 use schema::*;
+use std::time::SystemTime;
 
 #[derive(Queryable)]
 pub struct User {
@@ -14,11 +14,11 @@ pub struct User {
     created_at: SystemTime,
     online_at: SystemTime,
     followers_num: i16,
-    enabled: bool
+    enabled: bool,
 }
 
 #[derive(Insertable)]
-#[table_name="users"]
+#[table_name = "users"]
 pub struct NewUser {
     simple_name: String,
     avatar_url: Option<String>,
@@ -26,21 +26,21 @@ pub struct NewUser {
     alias: Option<String>,
     github: Option<String>,
     bio: String,
-    dev_bio: Option<String>
+    dev_bio: Option<String>,
 }
 
 #[derive(Queryable)]
 pub struct Category {
     id: i16,
     category_name: String,
-    parent_category: Option<i16>
+    parent_category: Option<i16>,
 }
 
 #[derive(Insertable)]
-#[table_name="categories"]
+#[table_name = "categories"]
 pub struct NewCategory {
     category_name: String,
-    parent_category: Option<i16>
+    parent_category: Option<i16>,
 }
 
 #[derive(Queryable)]
@@ -62,11 +62,11 @@ pub struct App {
     created_at: SystemTime,
     updated_at: SystemTime,
     stars_num: i16,
-    comments_num: i32
+    comments_num: i32,
 }
 
 #[derive(Insertable)]
-#[table_name="apps"]
+#[table_name = "apps"]
 pub struct NewApp {
     author_user: i16,
     category: i16,
@@ -80,7 +80,7 @@ pub struct NewApp {
     special: Option<String>,
     previews: Option<String>,
     app_permissions: Option<String>,
-    size: i32
+    size: i32,
 }
 
 #[derive(Queryable)]
@@ -93,44 +93,44 @@ pub struct Comment {
     stars_num: i16,
     replies_num: i32,
     created_at: SystemTime,
-    updated_at: Option<SystemTime>
+    updated_at: Option<SystemTime>,
 }
 
 #[derive(Insertable)]
-#[table_name="comments"]
+#[table_name = "comments"]
 pub struct NewComment {
     author_user: i16,
     app: i16,
     reply_comment: Option<i32>,
-    content: String
+    content: String,
 }
 
 #[derive(Queryable)]
 pub struct Follow {
     uid: i16,
-    followed_user: i16
+    followed_user: i16,
 }
 
 #[derive(Insertable)]
-#[table_name="follow"]
+#[table_name = "follow"]
 pub struct NewFollow {
     uid: i16,
-    followed_user: i16
+    followed_user: i16,
 }
 
 #[derive(Queryable)]
 pub struct Security {
     uid: i16,
     metapass: String,
-    passhash: Option<String>
+    passhash: Option<String>,
 }
 
 #[derive(Insertable)]
-#[table_name="_security"]
+#[table_name = "_security"]
 pub struct NewSecurity {
     uid: i16,
     metapass: String,
-    passhash: Option<String>
+    passhash: Option<String>,
 }
 
 #[derive(Queryable)]
@@ -141,11 +141,11 @@ pub struct Update {
     install_url: String,
     updates_text: String,
     api_min: Option<i16>,
-    api_target: Option<i16>
+    api_target: Option<i16>,
 }
 
 #[derive(Insertable)]
-#[table_name="updates"]
+#[table_name = "updates"]
 pub struct NewUpdate {
     app: i16,
     version_name: String,
@@ -153,33 +153,33 @@ pub struct NewUpdate {
     install_url: String,
     updates_text: String,
     api_min: Option<i16>,
-    api_target: Option<i16>
+    api_target: Option<i16>,
 }
 
 #[derive(Queryable)]
 pub struct Star {
     uid: i16,
-    app: i16
+    app: i16,
 }
 
 #[derive(Insertable)]
-#[table_name="stars"]
+#[table_name = "stars"]
 pub struct NewStar {
     uid: i16,
-    app: i16
+    app: i16,
 }
 
 #[derive(Queryable)]
 pub struct CommentStar {
     uid: i16,
-    comment: i32
+    comment: i32,
 }
 
 #[derive(Insertable)]
-#[table_name="comment_stars"]
+#[table_name = "comment_stars"]
 pub struct NewCommentStar {
     uid: i16,
-    comment: i32
+    comment: i32,
 }
 
 #[derive(Queryable)]
@@ -187,15 +187,15 @@ pub struct Timeline {
     uid: i16,
     created_at: SystemTime,
     line_type: i16,
-    line_data: i32
+    line_data: i32,
 }
 
 #[derive(Insertable)]
-#[table_name="timelines"]
+#[table_name = "timelines"]
 pub struct NewTimeline {
     uid: i16,
     line_type: i16,
-    line_data: i32
+    line_data: i32,
 }
 
 #[derive(Queryable)]
@@ -204,11 +204,11 @@ pub struct Notification {
     created_at: SystemTime,
     notification_type: i16,
     notification_data: i32,
-    enabled: bool
+    enabled: bool,
 }
 
 #[derive(Insertable)]
-#[table_name="notifications"]
+#[table_name = "notifications"]
 pub struct NewNotification {
     uid: i16,
     notification_type: i16,

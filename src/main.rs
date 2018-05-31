@@ -11,14 +11,14 @@ extern crate lazy_static;
 
 extern crate tungstenite;
 
-use diesel::prelude::*;
 use diesel::pg::PgConnection;
+use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
 
-pub mod schema;
-pub mod models;
 pub mod api;
+pub mod models;
+pub mod schema;
 
 fn main() {
     println!("Hello, world!");
@@ -27,8 +27,6 @@ fn main() {
 pub fn establish_connection() -> PgConnection {
     dotenv().ok();
 
-    let database_url = env::var("DATABASE_URL")
-        .expect("DATABASE_URL must be set");
-    PgConnection::establish(&database_url)
-        .expect(&format!("Error connecting to {}", database_url))
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    PgConnection::establish(&database_url).expect(&format!("Error connecting to {}", database_url))
 }

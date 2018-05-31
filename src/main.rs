@@ -18,11 +18,13 @@ use dotenv::dotenv;
 use std::env;
 
 pub mod api;
+pub mod helpers;
 pub mod models;
 pub mod schema;
-pub mod helpers;
 
-lazy_static!(
+use helpers::*;
+
+lazy_static! {
     static ref DOGETOK: String = env::var("DOGETOK").unwrap_or(":doge:".to_string());
     static ref WEBHOOKS: String = env::var("WEBHOOKS").unwrap_or("".to_string());
     static ref VERBOSE: bool = {
@@ -32,7 +34,30 @@ lazy_static!(
             false
         }
     };
-);
+}
+
+lazy_static! {
+    static ref WebHooks: Vec<WebHook> = {
+        let mut tmp = Vec::<WebHook>::new();
+        for i in (*WEBHOOKS).split(";") {
+            if i == "" {
+                continue;
+            }
+            let mut splited_entry = i.split(":");
+            tmp.push(WebHook {
+                hook_type: WebHookListenType::from_str(splited_entry.nth(0).unwrap().to_string()),
+                url: splited_entry.nth(2).unwrap().to_string(),
+                data: splited_entry
+                    .nth(1)
+                    .unwrap()
+                    .to_string()
+                    .parse::<i32>()
+                    .unwrap(),
+            });
+        }
+        return tmp;
+    };
+}
 
 fn main() {
     println!("Hello, geekapk!, Found environment(rocket environment see rocket output):");
@@ -40,6 +65,10 @@ fn main() {
     eprintln!("WEBHOOKS(WebHooks config): {}", *WEBHOOKS);
     if *VERBOSE {
         eprintln!("Debug mode is on, do not enable this in production mode(VERBOSE)");
+    }
+
+    if *VERBOSE {
+        println!("Parsed WebHooks: {:?}", *WebHooks);
     }
 }
 

@@ -1,4 +1,4 @@
-# ServerR ![[status](https://status.geekapk.org)](https://img.shields.io/uptimerobot/status/m780333733-2b10476b498c316d8fb9e684.svg) ![[weekly-status](https://status.geekapk.org)](https://img.shields.io/uptimerobot/ratio/7/m780333733-2b10476b498c316d8fb9e684.svg)
+# ServerR ![[status](https://status.geekapk.org)](https://img.shields.io/uptimerobot/status/m780333733-2b10476b498c316d8fb9e684.svg?style=flat-square) ![[weekly-status](https://status.geekapk.org)](https://img.shields.io/uptimerobot/ratio/7/m780333733-2b10476b498c316d8fb9e684.svg?style=flat-square)
 
 <p align="center">
   <a href="https://api.geekapk.org/">
@@ -56,11 +56,11 @@ GeekApk，为创建更好玩的应用社区而奋斗
 
 ## 为什么离开酷安而新建 _GeekApk_
 
-+ 酷安在国内，会不可避免的遭到一些 _众所周知_ 的 [事情](https://blog.nfz.moe/archives/the-silence-city.html)
++ 酷安在国内，会 __不可避免__ 的遭到一些 _众所周知_ 的 [事情](https://blog.nfz.moe/archives/the-silence-city.html)
 + 酷安几乎不开源他们的程序，尤其是特意[阻止](https://github.com/bjzhou/Coolapk-kotlin#%E9%85%B7%E5%B8%82%E5%9C%BA-v7-%E7%89%88-api-%E7%9B%B8%E5%85%B3) __第三方客户端访问 API__
 + 酷安的用户质量自 _某日_ 开始下降，到现在已经 [不怎么样了](https://zhuanlan.zhihu.com/p/35743455)
 + 酷安的开发者质量也开始下降，部分 __普通用户__ 开始学习简单模式化的程序设计，但他们不愿意 [自己解决容易的问题](https://stfw.info)、想方设法甚至不顾用户体验的 __加固__ 甚至连 __中文文档__ 也不愿意看，对于 __远程代码执行__ 级别的漏洞也没有任何动作
-+ 酷安的维护者也发生了变化，开始主要考虑 __盈利__ 而不是社区质量，虽然这对酷安是 __必然__ 发生的，部分 Geek 无法接受
++ 酷安的维护者也发生了变化，开始主要考虑 __盈利__ 而不是社区质量，虽然这对酷安是 __必然__ 发生的，即使部分 _Geek_ 无法接受
 + 参考 [neoFelhz](https://blog.nfz.moe/archives/coolapk-in-my-mind.html)、 [Rachel](https://blog.stfw.info/2017/05/11/why-leave-coolapk)、[iKirby](https://ikirby.me/125.html) 的博文：为什么 __离开酷安__
 
 ## Docs 文档
@@ -69,8 +69,8 @@ GeekApk，为创建更好玩的应用社区而奋斗
 
 ## Friends 友情链接
 
-+ [neoHosts](https://github.com/neoFelhz/neohosts) - 本 README 使用了 neoHosts 的模式
-+ [Web](https://github.com/geekapk-r/web) - Web 纯静态 JavaScript HTML 客户端
++ [neoHosts](https://github.com/neoFelhz/neohosts) - 本 README 使用了 __neoHosts__ 的模式
++ [Web](https://github.com/geekapk-r/web.geekapk.org) - Web 纯静态 _JavaScript HTML_ 客户端
 + [Dropage Project](https://legacy.gitbook.com/book/duangsuse/the-dropage-project/details) - 致敬最初的设计
 
 ## Maintainer

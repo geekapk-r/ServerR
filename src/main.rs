@@ -5,6 +5,9 @@
 extern crate diesel;
 extern crate dotenv;
 
+extern crate r2d2;
+extern crate r2d2_diesel;
+
 extern crate rocket;
 
 #[macro_use]
@@ -17,12 +20,18 @@ use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
 
+use std::sync::Arc;
+
 pub mod api;
 pub mod helpers;
 pub mod models;
 pub mod schema;
+pub mod db;
+
+use db::Pool;
 
 use helpers::*;
+use api::*;
 
 lazy_static! {
     static ref DOGETOK: String = env::var("DOGETOK").unwrap_or(":doge:".to_string());
@@ -70,12 +79,16 @@ fn main() {
     if *VERBOSE {
         println!("Parsed WebHooks: {:?}", *WEB_HOOKS);
     }
+    rocket::ignite()
+        .catch(errors![not_found, too_large, unauthorized, bad_request])
+        .manage(Arc::clone(&establish_connection()))
+        .launch();
 }
 
-pub fn establish_connection() -> PgConnection {
+pub fn establish_connection() -> Pool {
     dotenv().ok();
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
     eprintln!("DATABASE_URL(Database): {}", database_url);
-    PgConnection::establish(&database_url).expect(&format!("Error connecting to {}", database_url))
+    db::init_db_pool(&database_url).map_err(|e| e.to_string()).unwrap()
 }

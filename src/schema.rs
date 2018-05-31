@@ -103,7 +103,8 @@ table! {
         version_name -> Varchar,
         reversion -> Int2,
         install_url -> Varchar,
-        updates -> Varchar,
+        #[sql_name="updates"]
+        updates_text -> Varchar,
         api_min -> Nullable<Int2>,
         api_target -> Nullable<Int2>,
     }

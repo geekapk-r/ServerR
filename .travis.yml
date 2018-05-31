@@ -13,4 +13,6 @@ before_script:
 
 script:
   - cp .env.travis .env
-- cargo test --verbose
+  - cargo install diesel_cli --no-default-features --features postgres
+  - diesel migration run
+  - cargo test --verbose

@@ -1,3 +1,5 @@
+# Pull Request 需知
+
 在提交 PR 之前建议您确认一下 __代码格式化__ 和 __命名__ 问题，首先阅读 [贡献指南](https://github.com/geekapk-r/ServerR/blob/master/CONTRIBUTING.md)
 
 如果您的 PR 是解决一个问题的，建议提到那个 issue 的编号

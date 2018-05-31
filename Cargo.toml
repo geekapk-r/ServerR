@@ -18,21 +18,18 @@ name = "geekapkd"
 path = "src/main.rs"
 
 [dependencies]
-lazy_static = "1.0"
+lazy_static = "1"
 
 # WebSocket API
 tungstenite = "0.5.3"
 
 # Rocket.rs Web Framework
-rocket = "*"
-rocket_codegen = "*"
+rocket = "0.3"
+rocket_codegen = "0.3"
 
 # ORM
-diesel = { version = "1.0.0", features = ["postgres"] }
+diesel = { version = "1.3", features = ["postgres"] }
 dotenv = "0.9.0"
-
-[[test]]
-name = "tests"
 
 [badges]
 travis-ci = { repository = "geekapk-r/ServerR" }

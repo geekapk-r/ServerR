@@ -37,7 +37,7 @@ lazy_static! {
 }
 
 lazy_static! {
-    static ref WebHooks: Vec<WebHook> = {
+    static ref WEB_HOOKS: Vec<WebHook> = {
         let mut tmp = Vec::<WebHook>::new();
         for i in (*WEBHOOKS).split(";") {
             if i == "" {
@@ -68,7 +68,7 @@ fn main() {
     }
 
     if *VERBOSE {
-        println!("Parsed WebHooks: {:?}", *WebHooks);
+        println!("Parsed WebHooks: {:?}", *WEB_HOOKS);
     }
 }
 

@@ -36,6 +36,12 @@ r2d2-diesel = "1.0"
 
 yansi = "0.4"
 
+serde = "1.0"
+serde_json = "1.0"
+serde_derive = "1.0"
+
+rocket_contrib = { version = "0.3", features = ["json"] }
+
 [badges]
 travis-ci = { repository = "geekapk-r/ServerR" }
 

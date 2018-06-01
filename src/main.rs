@@ -16,6 +16,12 @@ extern crate tungstenite;
 
 extern crate yansi;
 
+#[macro_use]
+extern crate rocket_contrib;
+
+#[macro_use]
+extern crate serde_derive;
+
 use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;

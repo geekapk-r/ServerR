@@ -42,6 +42,10 @@ serde_derive = "1.0"
 
 rocket_contrib = { version = "0.3", features = ["json"] }
 
+futures = "0.1"
+hyper = "0.11"
+tokio-core = "0.1"
+
 [badges]
 travis-ci = { repository = "geekapk-r/ServerR" }
 

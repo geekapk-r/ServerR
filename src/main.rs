@@ -22,6 +22,10 @@ extern crate rocket_contrib;
 #[macro_use]
 extern crate serde_derive;
 
+extern crate futures;
+extern crate hyper;
+extern crate tokio_core;
+
 use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
@@ -81,6 +85,7 @@ fn main() {
     if *VERBOSE {
         println!("Parsed WebHooks: {:?}", *WEB_HOOKS);
     }
+
     rocket::ignite()
         .catch(errors![not_found, too_large, unauthorized, bad_request])
         .manage(Arc::clone(&establish_connection()))

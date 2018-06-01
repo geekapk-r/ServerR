@@ -89,7 +89,7 @@ fn main() {
 
     rocket::ignite()
         .catch(errors![not_found, too_large, unauthorized, bad_request])
-        .mount("/", routes![welcome_api])
+        .mount("/", routes![welcome_api, version, ping, check_passhash, check_metapass, update_passhash, webhooks_conf])
         .manage(Arc::clone(&establish_connection()))
         .launch();
 }

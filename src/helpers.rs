@@ -21,26 +21,30 @@ impl WebHookListenType {
 pub struct WebHook {
     pub hook_type: WebHookListenType,
     pub url: String,
-    pub data: i32,
+    pub data: u32,
 }
 
 impl WebHook {
     pub fn parse(s: String) -> Vec<WebHook> {
         let mut tmp = Vec::<WebHook>::new();
         for i in s.split(";") {
+            if *(::VERBOSE) {
+                println!("Parsing item: {}", i);
+            }
             if i == "" {
                 continue;
             }
             let mut splited_entry = i.split(":");
+            let a = splited_entry.next();
+            let b = splited_entry.next();
+            let c = splited_entry.next();
+            if *(::VERBOSE) {
+                println!("Construct item: {:?} : {:?} : {:?}", a, b, c);
+            }
             tmp.push(WebHook {
-                hook_type: WebHookListenType::from_str(splited_entry.nth(0).unwrap().to_string()),
-                url: splited_entry.nth(2).unwrap().to_string(),
-                data: splited_entry
-                    .nth(1)
-                    .unwrap()
-                    .to_string()
-                    .parse::<i32>()
-                    .unwrap(),
+                hook_type: WebHookListenType::from_str(a.unwrap().to_string()),
+                data: b.unwrap().to_string().parse::<u32>().unwrap(),
+                url: c.unwrap().to_string(),
             });
         }
         return tmp;

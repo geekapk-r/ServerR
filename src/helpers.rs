@@ -1,7 +1,7 @@
 #[derive(Debug)]
 pub enum WebHookListenType {
-    ReplyToMessage,
     CommentApp,
+    ReplyToMessage,
     NewUser,
 }
 
@@ -20,8 +20,8 @@ impl WebHookListenType {
 #[derive(Debug)]
 pub struct WebHook {
     pub hook_type: WebHookListenType,
-    pub url: String,
     pub data: u32,
+    pub url: String,
 }
 
 impl WebHook {

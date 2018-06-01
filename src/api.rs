@@ -1,5 +1,8 @@
 use rocket_contrib::{Json, Value};
 
+use rocket::response::content::Content;
+use rocket::http::ContentType;
+
 #[error(404)]
 fn not_found() -> Json<Value> {
     Json(json!({
@@ -30,4 +33,9 @@ fn bad_request() -> Json<Value> {
        "status": 400,
        "message": "I can't recognize your request"
    }))
+}
+
+#[get("/")]
+fn welcome_api() -> Content<String> {
+    Content(ContentType::HTML, (*(::WELCOME_DOC)).to_owned())
 }

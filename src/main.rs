@@ -46,11 +46,30 @@ lazy_static! {
 }
 
 fn main() {
-    println!("😸 {}, Found environment{}:", Paint::green("Hello, GeekApk!"), Paint::red("(rocket environment see rocket output)"));
-    eprintln!("🐶 {}: {}", Paint::yellow("DOGETOK(Admin token)"), Paint::cyan((*DOGETOK).to_owned()));
-    eprintln!("🔌 {}: {}", Paint::blue("WEBHOOKS(WebHooks config)"), *WEBHOOKS);
+    println!(
+        "{}{} Found environment {}:",
+        Paint::masked("🌌  "),
+        Paint::green("Hello, GeekApk!"),
+        Paint::red("(rocket environment see rocket output)")
+    );
+    eprintln!(
+        "{}{}: {}",
+        Paint::masked("🐶  "),
+        Paint::blue("DOGETOK"),
+        Paint::white((*DOGETOK).to_owned()).bold()
+    );
+    eprintln!(
+        "{}{}: {}",
+        Paint::masked("🔌  "),
+        Paint::blue("WEBHOOKS"),
+        Paint::white((*WEBHOOKS).to_owned()).bold()
+    );
     if *VERBOSE {
-        eprintln!("📜 {}(VERBOSE)", Paint::blue("Debug mode is on, do not enable this in production mode"));
+        eprintln!(
+            "{}{}",
+            Paint::masked("📜  "),
+            Paint::yellow("Debug mode is on, do not enable this in production mode")
+        );
     }
 
     if *VERBOSE {
@@ -66,7 +85,12 @@ pub fn establish_connection() -> Pool {
     dotenv().ok();
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-    eprintln!("📂 {}(Database): {}", Paint::blue("DATABASE_URL"), Paint::white(database_url.to_owned()));
+    eprintln!(
+        "{}{}: {}",
+        Paint::masked("📂  "),
+        Paint::blue("DATABASE_URL"),
+        Paint::white(database_url.to_owned()).bold()
+    );
     db::init_db_pool(&database_url)
         .map_err(|e| e.to_string())
         .unwrap()

@@ -203,6 +203,7 @@ dependencies = [
  "rocket 0.3.11 (registry+https://github.com/rust-lang/crates.io-index)",
  "rocket_codegen 0.3.11 (registry+https://github.com/rust-lang/crates.io-index)",
  "tungstenite 0.5.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "yansi 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

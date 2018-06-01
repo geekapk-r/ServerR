@@ -14,6 +14,8 @@ extern crate rocket;
 extern crate lazy_static;
 extern crate tungstenite;
 
+extern crate yansi;
+
 use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
@@ -27,6 +29,8 @@ pub mod models;
 pub mod schema;
 
 use db::Pool;
+
+use yansi::Paint;
 
 use api::*;
 use helpers::*;
@@ -42,11 +46,11 @@ lazy_static! {
 }
 
 fn main() {
-    println!("Hello, geekapk!, Found environment(rocket environment see rocket output):");
-    eprintln!("DOGETOK(Admin token): {}", *DOGETOK);
-    eprintln!("WEBHOOKS(WebHooks config): {}", *WEBHOOKS);
+    println!("😸 {}, Found environment{}:", Paint::green("Hello, GeekApk!"), Paint::red("(rocket environment see rocket output)"));
+    eprintln!("🐶 {}: {}", Paint::yellow("DOGETOK(Admin token)"), Paint::cyan((*DOGETOK).to_owned()));
+    eprintln!("🔌 {}: {}", Paint::blue("WEBHOOKS(WebHooks config)"), *WEBHOOKS);
     if *VERBOSE {
-        eprintln!("Debug mode is on, do not enable this in production mode(VERBOSE)");
+        eprintln!("📜 {}(VERBOSE)", Paint::blue("Debug mode is on, do not enable this in production mode"));
     }
 
     if *VERBOSE {
@@ -62,7 +66,7 @@ pub fn establish_connection() -> Pool {
     dotenv().ok();
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-    eprintln!("DATABASE_URL(Database): {}", database_url);
+    eprintln!("📂 {}(Database): {}", Paint::blue("DATABASE_URL"), Paint::white(database_url.to_owned()));
     db::init_db_pool(&database_url)
         .map_err(|e| e.to_string())
         .unwrap()

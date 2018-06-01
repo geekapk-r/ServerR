@@ -12,10 +12,8 @@ extern crate rocket;
 
 #[macro_use]
 extern crate lazy_static;
-
 extern crate tungstenite;
 
-use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
@@ -36,36 +34,11 @@ use helpers::*;
 lazy_static! {
     static ref DOGETOK: String = env::var("DOGETOK").unwrap_or(":doge:".to_string());
     static ref WEBHOOKS: String = env::var("WEBHOOKS").unwrap_or("".to_string());
-    static ref VERBOSE: bool = {
-        if let Ok(_) = env::var("VERBOSE") {
-            true
-        } else {
-            false
-        }
-    };
+    static ref VERBOSE: bool = env::var("VERBOSE").is_ok();
 }
 
 lazy_static! {
-    static ref WEB_HOOKS: Vec<WebHook> = {
-        let mut tmp = Vec::<WebHook>::new();
-        for i in (*WEBHOOKS).split(";") {
-            if i == "" {
-                continue;
-            }
-            let mut splited_entry = i.split(":");
-            tmp.push(WebHook {
-                hook_type: WebHookListenType::from_str(splited_entry.nth(0).unwrap().to_string()),
-                url: splited_entry.nth(2).unwrap().to_string(),
-                data: splited_entry
-                    .nth(1)
-                    .unwrap()
-                    .to_string()
-                    .parse::<i32>()
-                    .unwrap(),
-            });
-        }
-        return tmp;
-    };
+    static ref WEB_HOOKS: Vec<WebHook> = WebHook::parse((*WEBHOOKS).to_owned());
 }
 
 fn main() {

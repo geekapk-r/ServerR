@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub enum WebHookListenType {
     CommentApp,
     ReplyToMessage,
@@ -17,7 +17,7 @@ impl WebHookListenType {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct WebHook {
     pub hook_type: WebHookListenType,
     pub data: u32,

@@ -70,6 +70,18 @@ fn main() {
         Paint::blue("DOGETOK"),
         Paint::white((*DOGETOK).to_owned()).bold()
     );
+    if *DOGETOK == ":doge:" {
+        eprintln!(
+            "{}{}",
+            Paint::masked("💣  "),
+            Paint::red("USING DEFAULT ADMIN PASSWORD!!!").bold()
+        );
+        eprintln!(
+            "{}{}",
+            Paint::green("NOTE: "),
+            Paint::white("Set DOGETOK environment variable to your admin password").bold()
+        );
+    }
     eprintln!(
         "{}{}: {}",
         Paint::masked("🔌  "),
@@ -116,6 +128,34 @@ fn main() {
                 doge::delete_comment,
                 doge::delete_app
             ],
+        )
+        .mount(
+            "user",
+            routes![],
+        )
+        .mount(
+            "category",
+            routes![],
+        )
+        .mount(
+            "app",
+            routes![],
+        )
+        .mount(
+            "comment",
+            routes![],
+        )
+        .mount(
+            "updates",
+            routes![],
+        )
+        .mount(
+            "timeline",
+            routes![],
+        )
+        .mount(
+            "notification",
+            routes![],
         )
         .manage(Arc::clone(&establish_connection()))
         .launch();

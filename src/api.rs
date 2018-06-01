@@ -214,3 +214,52 @@ pub mod doge {
         }))
     }
 }
+
+pub mod user {
+    use db::Pool;
+    use rocket::http::Cookies;
+    use rocket::State;
+    use rocket_contrib::{Json, Value};
+}
+
+pub mod category {
+    use db::Pool;
+    use rocket::http::Cookies;
+    use rocket::State;
+    use rocket_contrib::{Json, Value};
+}
+
+pub mod app {
+    use db::Pool;
+    use rocket::http::Cookies;
+    use rocket::State;
+    use rocket_contrib::{Json, Value};
+}
+
+pub mod comment {
+    use db::Pool;
+    use rocket::http::Cookies;
+    use rocket::State;
+    use rocket_contrib::{Json, Value};
+}
+
+pub mod updates {
+    use db::Pool;
+    use rocket::http::Cookies;
+    use rocket::State;
+    use rocket_contrib::{Json, Value};
+}
+
+pub mod timeline {
+    use db::Pool;
+    use rocket::http::Cookies;
+    use rocket::State;
+    use rocket_contrib::{Json, Value};
+}
+
+pub mod notification {
+    use db::Pool;
+    use rocket::http::Cookies;
+    use rocket::State;
+    use rocket_contrib::{Json, Value};
+}

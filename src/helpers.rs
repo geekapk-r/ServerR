@@ -44,7 +44,10 @@ impl WebHook {
             tmp.push(WebHook {
                 hook_type: WebHookListenType::from_str(a.unwrap().to_string()),
                 data: b.unwrap().to_string().parse::<u32>().unwrap(),
-                url: c.unwrap().to_string(),
+                url: c.unwrap()
+                    .to_string()
+                    .replace("HTTPS", "https:")
+                    .replace("HTTP", "http:"),
             });
         }
         return tmp;

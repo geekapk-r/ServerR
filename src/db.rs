@@ -1,10 +1,10 @@
-use std::ops::Deref;
-use rocket::http::Status;
-use rocket::{Request, State, Outcome};
-use rocket::request::{self, FromRequest};
 use diesel::pg::PgConnection;
 use r2d2;
 use r2d2_diesel;
+use rocket::http::Status;
+use rocket::request::{self, FromRequest};
+use rocket::{Outcome, Request, State};
+use std::ops::Deref;
 use std::sync::Arc;
 
 pub type Pool = Arc<r2d2::Pool<r2d2_diesel::ConnectionManager<PgConnection>>>;
@@ -19,9 +19,7 @@ pub type Pool = Arc<r2d2::Pool<r2d2_diesel::ConnectionManager<PgConnection>>>;
 /// `r2d2::InitializationError`.
 pub fn init_db_pool(database_url: &str) -> Result<Pool, r2d2::Error> {
     let manager = r2d2_diesel::ConnectionManager::<PgConnection>::new(database_url);
-    let config = r2d2::Pool::builder()
-        .max_size(15)
-        .build(manager)?;
+    let config = r2d2::Pool::builder().max_size(15).build(manager)?;
     Ok(Arc::new(config))
 }
 
@@ -47,7 +45,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for DB {
 
         match pool.get() {
             Ok(conn) => Outcome::Success(DB(conn)),
-            Err(_) => Outcome::Failure((Status::ServiceUnavailable, ()))
+            Err(_) => Outcome::Failure((Status::ServiceUnavailable, ())),
         }
     }
 }

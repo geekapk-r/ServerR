@@ -23,15 +23,15 @@ use std::env;
 use std::sync::Arc;
 
 pub mod api;
+pub mod db;
 pub mod helpers;
 pub mod models;
 pub mod schema;
-pub mod db;
 
 use db::Pool;
 
-use helpers::*;
 use api::*;
+use helpers::*;
 
 lazy_static! {
     static ref DOGETOK: String = env::var("DOGETOK").unwrap_or(":doge:".to_string());
@@ -90,5 +90,7 @@ pub fn establish_connection() -> Pool {
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
     eprintln!("DATABASE_URL(Database): {}", database_url);
-    db::init_db_pool(&database_url).map_err(|e| e.to_string()).unwrap()
+    db::init_db_pool(&database_url)
+        .map_err(|e| e.to_string())
+        .unwrap()
 }

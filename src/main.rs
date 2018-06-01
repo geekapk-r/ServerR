@@ -53,7 +53,8 @@ lazy_static! {
 
 lazy_static! {
     static ref WEB_HOOKS: Vec<WebHook> = WebHook::parse((*WEBHOOKS).to_owned());
-    static ref WELCOME_DOC: String = format!("{}", String::from_utf8_lossy(include_bytes!("web.html")));
+    static ref WELCOME_DOC: String =
+        format!("{}", String::from_utf8_lossy(include_bytes!("web.html")));
 }
 
 fn main() {
@@ -89,7 +90,33 @@ fn main() {
 
     rocket::ignite()
         .catch(errors![not_found, too_large, unauthorized, bad_request])
-        .mount("/", routes![welcome_api, version, ping, check_passhash, check_metapass, update_passhash, webhooks_conf])
+        .mount(
+            "/",
+            routes![
+                welcome_api,
+                version,
+                ping,
+                check_passhash,
+                check_metapass,
+                update_passhash,
+                webhooks_conf
+            ],
+        )
+        .mount(
+            "/doge",
+            routes![
+                doge::useradd,
+                doge::delete_user,
+                doge::endisable_user,
+                doge::update_metapass,
+                doge::create_category,
+                doge::update_category_name,
+                doge::update_category_parent,
+                doge::delete_category,
+                doge::delete_comment,
+                doge::delete_app
+            ],
+        )
         .manage(Arc::clone(&establish_connection()))
         .launch();
 }
